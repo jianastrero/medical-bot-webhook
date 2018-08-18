@@ -19,7 +19,7 @@ class CreateSymptomsTable extends Migration
             $table->unsignedInteger('sickness_id');
             $table->timestamps();
 
-            $table->foreign('sickness_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('sickness_id')->references('id')->on('sicknesses')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
