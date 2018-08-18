@@ -26,10 +26,11 @@ class WebHookController extends Controller
         }
         $sicknessScores = array();
         foreach ($possibleSickness as $item) {
-            if (array_key_exists($item, $possibleSickness)) {
-                $sicknessScores[$item] = 1;
+            $string = preg_replace('/\s+/', '', $item);
+            if (array_key_exists($string, $possibleSickness)) {
+                $sicknessScores[$string] = 1;
             } else {
-                $sicknessScores[$item] = $sicknessScores[$item] + 1;
+                $sicknessScores[$string] = $sicknessScores[$string] + 1;
             }
         }
         $fulfillmentText = "You are healthy. Your symptoms are probably just coincidence, or Something i may not know of.";
