@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sickness;
 use App\Symptom;
 use Illuminate\Http\Request;
+use function value;
 
 class WebHookController extends Controller
 {
@@ -20,7 +21,7 @@ class WebHookController extends Controller
 //            );
             $possible = true;
             foreach ($symptoms as $symptom) {
-                if (!in_array($symptom, $sicknessSymptoms)) {
+                if (!$this->isInArray($sicknessSymptoms, $symptom)) {
                     $possible = false;
                 }
             }
@@ -42,5 +43,12 @@ class WebHookController extends Controller
             "fulfillmentText" => json_encode($possibleSickness),
         );
         return json_encode($response);
+    }
+
+    private function isInArray($array, $value) {
+        foreach ($array as $item) {
+            if ($item == $value) return true;
+        }
+        return false;
     }
 }
