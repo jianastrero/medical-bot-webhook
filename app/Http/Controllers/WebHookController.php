@@ -17,9 +17,9 @@ class WebHookController extends Controller
             foreach ($items as $item) {
                 $sickness = 'Unknown';
                 if ($item instanceof Symptom) {
-                    $sickness = $item->sickness();
+                    $sickness = $item->sickness()->name;
                 }
-                $possibleSickness[] = $sickness->name;
+                $possibleSickness[] = $sickness;
             }
         }
         $response = array(
