@@ -42,7 +42,7 @@ class WebHookController extends Controller
             if (count($possibleSickness)-1 > 1) {
                 for ($i = 1; $i < count($possibleSickness); $i++) {
                     $fulfillmentText .= $possibleSickness[$i];
-                    if ($i < count($possibleSickness)-1) {
+                    if ($i < count($possibleSickness)-2) {
                         $fulfillmentText .= ', ';
                     } else {
                         $fulfillmentText .= ' and ';
