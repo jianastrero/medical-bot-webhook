@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class WebHookController extends Controller
 {
     public function getSickness(Request $request) {
-        $symptoms = $request->queryResult;
+        $symptoms = $request->json()->all();
         $response = array(
             "fulfillmentText" => 'Hello from webhook, your symptoms are: '.$symptoms,
         );
