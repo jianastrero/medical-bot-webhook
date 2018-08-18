@@ -23,7 +23,7 @@ class WebHookController extends Controller
             }
         }
         $response = array(
-            "fulfillmentText" => json_encode($symptoms),
+            "fulfillmentText" => json_encode($possibleSickness),
         );
         return json_encode($response);
     }
