@@ -13,32 +13,16 @@ class WebHookController extends Controller
         $json = $request->json()->all();
         $symptoms = $json['queryResult']['parameters']['symptom'];
         $possibleSickness = array();
-        $allSickness = Sickness::all();
-        foreach ($allSickness as $sickness) {
-            $sicknessSymptoms = $sickness->symptoms->toArray();
-//            return array(
-//                "fulfillmentText" => json_encode($sicknessSymptoms),
-//            );
-            $possible = true;
-            foreach ($symptoms as $symptom) {
-                if (!$this->isInArray($sicknessSymptoms, $symptom)) {
-                    $possible = false;
+        foreach ($symptoms as $symptom) {
+            $items = Symptom::where('name', $symptom)->get();
+            foreach ($items as $item) {
+                $sickness = 'Unknown';
+                if ($item instanceof Symptom) {
+                    $sickness = $item->sickness->name;
                 }
-            }
-            if ($possible) {
-                $possibleSickness[] = $sickness->name;
+                $possibleSickness[] = $sickness;
             }
         }
-//        foreach ($symptoms as $symptom) {
-//            $items = Symptom::where('name', $symptom)->get();
-//            foreach ($items as $item) {
-//                $sickness = 'Unknown';
-//                if ($item instanceof Symptom) {
-//                    $sickness = $item->sickness->name;
-//                }
-//                $possibleSickness[] = $sickness;
-//            }
-//        }
         $response = array(
             "fulfillmentText" => json_encode($possibleSickness),
         );
