@@ -40,9 +40,9 @@ class WebHookController extends Controller
         } else if ($possibleSickness > 1) {
             $fulfillmentText = "You most likely have $possibleSickness[0], but you are in risk of having ";
             if (count($possibleSickness)-1 > 1) {
-                for ($i = 0; $i < count($possibleSickness)-1; $i++) {
+                for ($i = 1; $i < count($possibleSickness); $i++) {
                     $fulfillmentText .= $possibleSickness[$i];
-                    if ($i < count($possibleSickness)-2) {
+                    if ($i < count($possibleSickness)-1) {
                         $fulfillmentText .= ', ';
                     } else {
                         $fulfillmentText .= ' and ';
