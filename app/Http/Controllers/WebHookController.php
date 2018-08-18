@@ -8,7 +8,7 @@ class WebHookController extends Controller
 {
     public function getSickness(Request $request) {
         $response = array(
-            "source" => $request->result->source,
+            "source" => $request->source,
             "speech" => "Hello from webhook speech",
             "displayText" => "Hello from webhook display text",
             "contextOut" => array()
