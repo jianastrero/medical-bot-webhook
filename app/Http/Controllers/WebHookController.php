@@ -9,7 +9,7 @@ class WebHookController extends Controller
     public function getSickness(Request $request) {
         $symptoms = $request->json()->all();
         $response = array(
-            "fulfillmentText" => 'Hello from webhook, your symptoms are: '.$symptoms,
+            "fulfillmentText" => json_encode($symptoms),
         );
         return json_encode($response);
     }
