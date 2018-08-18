@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class WebHookController extends Controller
 {
     public function getSickness(Request $request) {
-        return "Hello from WebHook!";
+        return json_encode($request->toArray());
     }
 }
