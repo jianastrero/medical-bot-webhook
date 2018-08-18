@@ -14,10 +14,7 @@ class WebHookController extends Controller
         $possibleSickness = array();
         $allSickness = Sickness::all();
         foreach ($allSickness as $sickness) {
-            $sicknessSymptoms = $sickness->symptoms;
-            return array(
-                "fulfillmentText" => json_encode($sicknessSymptoms),
-            );
+            $sicknessSymptoms = $sickness->symptoms->toArray();
             $possible = true;
             foreach ($symptoms as $symptom) {
                 if (!in_array($symptom, $sicknessSymptoms)) {
